@@ -1,12 +1,12 @@
 # How to run the project
-Make one directory with name <dir>
-cd <dir>
-Clone the project in this dir
-git clone <git url>
-cd Aquera
-Run: npm install
-Run: ng serve
-Go to chrome localhost:4200 to see the app
+## Make one directory with name <dir>
+### cd <dir>
+### Clone the project in this dir
+### git clone <git url>
+### cd Aquera
+### Run: npm install
+### Run: ng serve
+### Go to chrome localhost:4200 to see the app
 
 
 
