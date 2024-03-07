@@ -1,0 +1,111 @@
+<!DOCType html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>SWP</title>
+        <base href="/" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <h1 class="header-line">Star Wars Planet Information</h1>
+        </header>
+        <main class="planet-cards">
+            <ng-container *ngFor="let result of planetData?.results">
+                <div class="card">
+                    <h2 class="planet-name">{{ result.name }}</h2>
+                    <div>
+                        <span class="info-heading">Climate:-</span> {{result.climate}}
+                    </div>
+                    <div>
+                        <span class="info-heading">Diameter:-</span> {{result.diameter}}
+                    </div>
+                    <div>
+                        <span class="info-heading" >Gravity:-</span> {{result.gravity}}
+                    </div>
+                    <div>
+                        <span class="info-heading" >Population:-</span> {{result.population}}
+                    </div>
+                    <div>
+                        <span class="info-heading">Orbital Period:-</span> {{result.orbital_period}}
+                    </div>
+                    <div>
+                        <span class="info-heading">Rotation Period:-</span> {{result.rotation_period}}
+                    </div>
+                    <div>
+                        <span class="info-heading">Surface Water:-</span> {{result.surface_water}}
+                    </div>
+                    <div>
+                        <span class="info-heading">Terrain:-</span> {{result.terrain}}
+                    </div>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title></mat-panel-title>
+                            <mat-panel-description>
+                                Residents
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-accordion>
+                            <p *ngIf="result.residents.length == 0" class="header-line">
+                                Peoples did not live here
+                            </p>
+                            <ng-container *ngFor="let resident of result.residents">
+                                <mat-expansion-panel (click)="callResident(resident)">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title></mat-panel-title>
+                                        <mat-panel-description>
+                                            People {{resident.split('/')[resident.split('/').length - 2]}}
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <div class="resident">
+                                        <h3 class="header-line">{{residentData?.name}}</h3>
+                                        <div>
+                                            <span class="info-heading">Year:- </span>
+                                            {{residentData?.birth_year}}
+                                        </div>
+                                        <div>
+                                            <span class="info-heading">Eye Color:- </span>
+                                            {{residentData?.eye_color}}
+                                        </div>
+                                        <div>
+                                            <span class="info-heading">Gender:- </span>
+                                            {{residentData?.gender}}
+                                        </div>
+                                        <div>
+                                            <span class="info-heading">Hair Color:- </span>
+                                            {{residentData?.hair_color}}
+                                        </div>
+                                        <div>
+                                            <span class="info-heading">Height:- </span>
+                                            {{residentData?.height}}
+                                        </div>
+                                        <div>
+                                            <span class="info-heading">Mass:- </span>
+                                            {{residentData?.mass}}
+                                        </div>
+                                        <div>
+                                            <span class="info-heading">Skin Color:- </span>
+                                            {{residentData?.skin_color}}
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                            </ng-container>
+                        </mat-accordion>
+                    </mat-expansion-panel>
+                </div>
+            </ng-container>
+
+        </main>
+        <footer class="page" style="gap: 10px;">
+            <div class="page">
+                <button type="submit" (click)="paginatorController('Prev')" [disabled]="pageNo == 1">Prev</button>
+                <button type="submit" (click)="paginatorController('Next')" [disabled]="pageNo == maxPageNo">Next</button>
+            </div>
+            <div class="page">
+                <ng-container *ngFor="let page of pages">
+                    <button (click)="paginatorController(page)" type="submit">{{ page }}</button>
+                </ng-container>
+            </div>
+        </footer>
+    </body>
+</html>

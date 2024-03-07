@@ -1,0 +1,52 @@
+body{
+    padding: 5px;
+}
+
+.header-line{
+    text-align: center;
+}
+
+.planet-cards{
+    display: grid;
+    grid-template-columns: 19.5% 19.5% 19.5% 19.5% 19.5%;
+    // column-gap: 0.5%;
+    // row-gap: 10px;
+    gap: 0.5%;
+}
+
+.card{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.planet-name{
+    text-align: center;
+}
+
+.planet-info{
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 7px;
+    column-gap: 5px;
+}
+
+.info-heading{
+    font-weight: 520;
+}
+
+.resident{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.page{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+}
