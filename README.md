@@ -1,6 +1,6 @@
 # How to run the project
-## Make one directory with name <dir>
-### cd <dir>
+## Make one directory with name xyz
+### cd xyz
 ### Clone the project in this dir
 ### git clone <git url>
 ### cd Aquera
