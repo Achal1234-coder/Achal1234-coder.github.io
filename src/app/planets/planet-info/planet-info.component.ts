@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {PlanetInfoService} from '../planet-info.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-planet-info',
@@ -15,12 +17,11 @@ export class PlanetInfoComponent {
   maximunPages:any
   pages:any = [];
 
-  constructor(public planetService: PlanetInfoService){}
+  constructor(public planetService: PlanetInfoService, public snackBar: MatSnackBar){}
 
   ngOnInit():void{
     this.planetService.get('https://swapi.dev/api/planets/?format=json').subscribe((data)=>{
       this.planetData = data;
-      console.log(this.planetData)
       this.pageNo = 1;
       this.maxPageNo = Math.ceil(this.planetData.count / this.planetData.results.length);
       // this.maximunPages = Math.min(5, this.maxPageNo);
@@ -30,9 +31,15 @@ export class PlanetInfoComponent {
       //   this.pages.push(i+1);
       // }
       // this.pages.push('>>');
-      console.log(this.pages)
 
-    })
+    },
+    (error)=>{
+      this.snackBar.open('Some thing went wrong with API', 'Close', {
+      duration: 2000, // Duration in milliseconds (2 seconds)
+      }
+      );
+    }
+    )
   }
 
   callResident(url:string){
@@ -61,7 +68,12 @@ export class PlanetInfoComponent {
       const nextPage = this.planetData.next;
       this.planetService.get(nextPage).subscribe((data)=>{
       this.planetData = data;
-      console.log(this.planetData)
+    },
+    (error)=>{
+      this.snackBar.open('Some thing went wrong with API', 'Close', {
+      duration: 2000, // Duration in milliseconds (2 seconds)
+      }
+      );
     })
 
     }
@@ -70,7 +82,12 @@ export class PlanetInfoComponent {
       const previousPage = this.planetData.previous;
       this.planetService.get(previousPage).subscribe((data)=>{
       this.planetData = data;
-      console.log(this.planetData)
+    },
+    (error)=>{
+      this.snackBar.open('Some thing went wrong with API', 'Close', {
+      duration: 2000, // Duration in milliseconds (2 seconds)
+      }
+      );
     })
 
     }
